@@ -133,4 +133,16 @@ app.get('/deleteAllComplete', function (req, res) {
 
 })
 
+app.get('/sortAllComplete', function (req, res) {
+
+    let query =  { taskStatus: "Complete" } ;
+    let sort = { name: -1 } ;
+
+    Tasks.where(query).sort(sort).limit(3).exec(function (err, docs) {
+        res.render('alltasks.html', {task: docs});
+        console.log(docs);
+    });
+
+})
+
 app.listen(8080);
